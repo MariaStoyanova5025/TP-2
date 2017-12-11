@@ -33,6 +33,7 @@ int main()
 		perror("Can't mmap");
 		return -1;
 	}
+	mem->lap = 0;
 	uint32_t i = 0;
 	mem->pos = 0;
 	while(true)
@@ -43,6 +44,8 @@ int main()
 		if(mem->pos == 5025)
 		{
 			mem->pos = 0;
+			i = 0;
+			mem->lap++;
 		}		
 	}	
 

@@ -22,10 +22,17 @@ int main()
 		perror("Can't mmap");
 		return -1;
 	}	
-	uint64_t i = 0;
+	
+	uint64_t i = mem->pos;
 	uint64_t check;
+	uint64_t lap = 0;
 	while(true)
 	{
+		if(lap > mem->lap)
+		{
+			perror("Read overtaking write");
+			break;
+		}
 		while(i == mem->pos)
 		{}
 		check = verify((void*)mem->buff[i].array);
@@ -35,10 +42,16 @@ int main()
 			break;
 
 		}
+		if(check != i)
+		{
+			perror("Seed not correct");
+			break;
+		}
 		i++;
 		if(i == 5025)
 		{
 			i = 0;
+			lap++;
 		}
 	}	
 

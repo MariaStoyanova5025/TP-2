@@ -5,13 +5,14 @@
 
 struct cyclic_buf
 {
-	volatile int array[4096];
+	volatile int array[1024];
 };
 
 struct buffer
 {
 	volatile struct cyclic_buf buff[5025];
 	volatile uint64_t pos;
+	volatile uint64_t lap;
 
 };
 
