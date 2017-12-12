@@ -34,17 +34,14 @@ int main()
 		return -1;
 	}
 	mem->lap = 0;
-	uint32_t i = 0;
 	mem->pos = 0;
 	while(true)
 	{
-		generate((void*)mem->buff[mem->pos].array, i);
-		i++;
+		generate((void*)mem->buff[mem->pos].array, mem->pos);
 		mem->pos++;
 		if(mem->pos == 5025)
 		{
 			mem->pos = 0;
-			i = 0;
 			mem->lap++;
 		}		
 	}	

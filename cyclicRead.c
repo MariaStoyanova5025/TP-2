@@ -28,13 +28,14 @@ int main()
 	uint64_t lap = 0;
 	while(true)
 	{
-		if(lap > mem->lap)
-		{
-			perror("Read overtaking write");
-			break;
-		}
+		
 		while(i == mem->pos)
 		{}
+		if(lap < mem->lap && mem->pos == i)
+		{
+			perror("Write overtakes read");
+			break;
+		}
 		check = verify((void*)mem->buff[i].array);
 		if(check == -1)
 		{
