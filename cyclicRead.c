@@ -31,7 +31,7 @@ int main()
 		
 		while(i == mem->pos)
 		{}
-		if((lap < mem->lap && mem->pos == i)  || (lap == mem->lap && mem->pos >= i))
+		if(mem->pos >= i + 5025)
 		{
 			perror("Write overtakes read");
 			break;
